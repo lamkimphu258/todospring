@@ -1,0 +1,7 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<footer class="text-center text-lg-start w-100 position-absolute bottom-0 p-3 bg-light" layout:fragment="footer">
+    <div class="text-center p-2">
+        © <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span> Copyright
+    </div>
+</footer>
+</html>
