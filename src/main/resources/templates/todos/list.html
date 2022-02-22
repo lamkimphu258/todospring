@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layouts/base.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
 >
 <head>
     <title>Todo List</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <p>Todo list modified</p>
+    <h1 class="text-center py-3" th:text="${#strings.capitalize('create new todo')}"></h1>
+    <form method="post" th:action="@{/todos}" th:object="${todo}">
+        <div class="input-group">
+            <input class="form-control" th:errorclass="border-danger"
+                   th:field="*{name}" type="text">
+            <div class="input-group-append">
+                <button class="input-group-text bg-primary text-white" type="submit">+</button>
+            </div>
+        </div>
+        <span  th:if="${#fields.hasErrors('name')}" th:errorclass="text-danger" th:errors="*{name}"></span>
+    </form>
+    <hr>
+    <div th:each="todo: ${todos}">
+        <div class="input-group mb-3">
+            <input class="form-control"  th:value="${todo.name}" type="text" readonly>
+            <a th:href="@{/todos/{id}/delete(id=${todo.id})}" class="input-group-text bg-success text-decoration-none text-white pe-auto">&#10003;</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
