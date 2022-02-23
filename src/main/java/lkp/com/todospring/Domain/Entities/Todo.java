@@ -19,7 +19,7 @@ public class Todo {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(name = "id", unique = true, updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
     @NotBlank(message = "Todo name cannot be blank")
